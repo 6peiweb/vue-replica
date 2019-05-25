@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Vue</title>
+</head>
+<body>
+<div id="app">
+  <input type="text" v-model="someStr">
+  <input type="text" v-model="child.someStr">
+  <p v-class="className" class="abc">
+    {{ someStr }}
+    <span class="liupei" v-text="child.someStr"></span>
+  </p>
+  <p>{{ child.someStr }}</p>
+  <p>{{ getHelloWord }}</p>
+  <p v-html="htmlStr"></p>
+  <button v-on:click="clickBtn">change model</button>
+</div>
+
+<script src="./js/observer.js"></script>
+<script src="./js/watcher.js"></script>
+<script src="./js/compiler.js"></script>
+<script src="./js/index.js"></script>
+
+<script>
+var vm = new Vue({
+  el: '#app',
+  data: {
+    someStr: 'hello ',
+    className: 'btn',
+    htmlStr: '<span style="color: #f00;">red</span>',
+    child: {
+      someStr: 'World !'
+    }
+  },
+  computed: {
+    getHelloWord: function () {
+      return this.someStr + this.child.someStr;
+    }
+  },
+  methods: {
+    clickBtn: function (e) {
+      var randomStrArr = ['childOne', 'childTwo', 'childThree'];
+      this.child.someStr = randomStrArr[parseInt(Math.random() * 3)];
+    }
+  }
+});
+
+vm.$watch('child.someStr', function () {
+  console.log(arguments);
+});
+
+</script>
+
+</body>
+
+</html>
