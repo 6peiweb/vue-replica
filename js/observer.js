@@ -48,7 +48,6 @@ function getDepUid () {
 
 function Dep () {
   this.id = getDepUid()
-  console.log(this.id);
   this.subs = []
 }
 

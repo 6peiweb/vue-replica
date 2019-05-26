@@ -86,7 +86,7 @@ var compileUtil = {
       var newValue = e.target.value
       if (val === newValue) return
       self._setVMVal(vm, exp, newValue)
-      val = newValue
+      // val = newValue
     })
   },
   class: function (node, vm, exp) {
@@ -141,7 +141,7 @@ var updater = {
     var space = className && String(value) ? ' ' : ''
     node.className = className + space + value
   },
-  moduleUpdater: function (node, value) { // 更新双向数据绑定的 value
+  modelUpdater: function (node, value) { // 更新双向数据绑定的 value
     node.value = typeof value === 'undefined' ? '' : value
   }
 }

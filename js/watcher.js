@@ -1,7 +1,7 @@
 function Watcher (vm, expOrFn, cb) {
-  this.cb = cb
   this.vm = vm
   this.expOrFn = expOrFn
+  this.cb = cb
   this.depIds = {}
   
   if (typeof expOrFn === 'function') {
@@ -31,7 +31,7 @@ Watcher.prototype = {
       this.depIds[dep.id] = dep
     }
   },
-  get: function () {  // 获取属性当前值，并将监听器绑定在
+  get: function () {  // 获取属性当前值
     Dep.target = this
     var value = this.getter.call(this.vm, this.vm)
     Dep.target = null
